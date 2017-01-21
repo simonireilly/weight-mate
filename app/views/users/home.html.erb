@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <div class="panel panel-info">
+    <div class="panel-heading">Add an excercise</div>
+      <div class="panel-body">
+        <%= simple_form_for @data do |f| %>
+            <%= f.input :excercise %>
+            <%= f.input :sets %>
+            <%= f.input :reps %>
+            <%= f.input :weight %>
+          <%= f.button :submit %>
+        <% end %>
+    </div>
+  </div>
+<% end %>

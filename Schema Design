@@ -1,0 +1,3 @@
+User
+
+rails g data user:references excercise:string sets:decimal reps:decimal weight:decimal srw: decimal

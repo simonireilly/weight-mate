@@ -1,5 +1,8 @@
 <% if user_signed_in? && current_user %>
     <!--The input container for the workout-->
+
+
+
     <div class="row">
       <div class="col-md-4">
         <div class="panel panel-info">
@@ -34,18 +37,51 @@
       <div class="col-md-8">
         <div class="panel panel-info">
           <div class="panel-heading">
-            Summary
+            Intensity - The dot product of repetitions, sets and the weight lifted
           </div>
 
             <div class="panel-body">
-              <% if current_user.data %>
-                  <%= line_chart @workoutData %>
-                  <%= line_chart User.group_by_day.count %>
+              <% if current_user.data.count >= 1 %>
+                  <%= line_chart @intensityData %>
                   <% else %>
               <p>Create some data to get started</p>
                   <% end %>
             </div>
         </div>
       </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          Your latest workout summary
+        </div>
+        <div class="panel-body">
+          <% if current_user.data.count >= 1 %>
+              <table class="table table-responsive">
+                <tr>
+                  <th>Excercise</th>
+                  <th>Sets</th>
+                  <th>Reps</th>
+                  <th>Weight</th>
+                  <th>Intensity</th>
+                </tr>
+              <% @modelData.where("created_at >= ?", Time.zone.now.beginning_of_day).each do |datum| %>
+                <tr>
+                  <td><%= datum.excercise %></td>
+                  <td><%= datum.sets %></td>
+                  <td><%= datum.reps %></td>
+                  <td><%= datum.weight %></td>
+                  <td><%= intensity(datum) %></td>
+                </tr>
+              <% end %>
+              </table>
+          <% else %>
+              <p>Create some data to get started</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
     </div>
 <% end %>

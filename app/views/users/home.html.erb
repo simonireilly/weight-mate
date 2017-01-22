@@ -9,9 +9,9 @@
             <div class="panel-body">
               <div class="row">
               <%= simple_form_for @data do |f| %>
+                <% @collection = %w[Pull-ups Pull-downs Seated-row Stack-pull Oblique-pull Oblique-twist Rotating-curl Hammer-curl  ] %>
 
-
-                  <%= f.input :excercise, :collection => %w[Mike Nick Jason Tim], :wrapper_html => { :class => 'col-md-12' }%>
+                  <%= f.input :excercise, :collection => @collection, :wrapper_html => { :class => 'col-md-12' }%>
                     <div class="row">
                       <div class="col-md-12">
                   <%= f.input :sets, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>
@@ -39,7 +39,8 @@
 
             <div class="panel-body">
               <% if current_user.data %>
-              <%= line_chart @workoutData %>
+                  <%= line_chart @workoutData %>
+                  <%= line_chart User.group_by_day.count %>
                   <% else %>
               <p>Create some data to get started</p>
                   <% end %>

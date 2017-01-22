@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d989760f-8739-4aee-9ba5-824aa635d1ff" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
     </list>
     <ignored path="workouttracker.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -417,12 +415,12 @@
       <updated>1485028048860</updated>
       <workItem from="1485028050468" duration="1155000" />
       <workItem from="1485033688956" duration="9568000" />
-      <workItem from="1485076387321" duration="8561000" />
+      <workItem from="1485076387321" duration="8721000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19284000" />
+    <option name="totallyTimeSpent" value="19444000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />

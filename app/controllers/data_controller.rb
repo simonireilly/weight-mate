@@ -2,7 +2,7 @@ class DataController < ApplicationController
   def create
     @data = current_user.data.new(data_params)
     @data.save
-    redirect_to action: 'index'
+    redirect_to root_path
   end
 
   private

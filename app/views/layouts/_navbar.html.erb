@@ -1,22 +1,26 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">
-        Weight Mate
-      </a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#weight-mate-navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Weight Mate</a>
+      </div>
+
+    <div class="collapse navbar-collapse" id="weight-mate-navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <% if !user_signed_in? %>
+        <li><%= link_to 'Sign in', new_user_session_path %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <% else %>
+
+        <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to 'Edit account', edit_user_registration_path%></li>
+            <% end %>
+      </ul>
     </div>
-    <ul class="nav navbar-nav">
-      <li><%= link_to 'Front Day'%></li>
-      <li><%= link_to 'Back Day'%></li>
-    </ul>
-    <ul class="nav navbar-nav pull-right">
-      <% if !user_signed_in? %>
-      <li><%= link_to 'Sign in', new_user_session_path %></li>
-      <li><%= link_to 'Sign up', new_user_registration_path %></li>
-          <% else %>
-      <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-      <li><%= link_to 'Edit account', edit_user_registration_path%></li>
-          <% end %>
-    </ul>
   </div>
 </nav>

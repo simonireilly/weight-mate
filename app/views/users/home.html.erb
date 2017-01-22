@@ -17,9 +17,9 @@
                   <%= f.input :excercise, :collection => @collection, :wrapper_html => { :class => 'col-md-12' }%>
                     <div class="row">
                       <div class="col-md-12">
-                  <%= f.input :sets, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>
-                  <%= f.input :reps, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>
-                  <%= f.input :weight, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>
+                        <%= f.input :sets, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>
+                        <%= f.input :reps, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>
+                        <%= f.input :weight, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -37,7 +37,7 @@
       <div class="col-md-8">
         <div class="panel panel-info">
           <div class="panel-heading">
-            Intensity - The dot product of repetitions, sets and the weight lifted
+            Intensity of your workout - The dot product of repetitions, sets and the weight lifted
           </div>
 
             <div class="panel-body">
@@ -55,7 +55,7 @@
     <div class="col-md-12">
       <div class="panel panel-info">
         <div class="panel-heading">
-          Your latest workout summary
+          Your latest workout summary (This will reset tomorrow - better get to the gym!)
         </div>
         <div class="panel-body">
           <% if current_user.data.count >= 1 %>

@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root to: 'users#home'
 
   resources :data
+  get '/intensity', to: 'users#intensity'
 end

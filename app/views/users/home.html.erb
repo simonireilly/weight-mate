@@ -11,7 +11,7 @@
               <%= simple_form_for @data do |f| %>
 
 
-                  <%= f.input :excercise, :wrapper_html => { :class => 'col-md-12' }%>
+                  <%= f.input :excercise, :collection => %w[Mike Nick Jason Tim], :wrapper_html => { :class => 'col-md-12' }%>
                     <div class="row">
                       <div class="col-md-12">
                   <%= f.input :sets, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>
@@ -39,7 +39,7 @@
 
             <div class="panel-body">
               <% if current_user.data %>
-              <%= line_chart [[0,0],[1,1]] %>
+              <%= line_chart @workoutData %>
                   <% else %>
               <p>Create some data to get started</p>
                   <% end %>

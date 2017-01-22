@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Specify ruby version so gems from sdk are available
-ruby '2.2.4'
+ruby '2.3'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -12,8 +12,6 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'chartkick'
-gem 'groupdate', '~> 2.1.1'
-gem 'active_median', '~> 0.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

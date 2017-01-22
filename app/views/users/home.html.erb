@@ -67,6 +67,7 @@
                   <th>Weight</th>
                   <th>Intensity</th>
                 </tr>
+                <% @totalIntensity = 0   %>
               <% @modelData.where("created_at >= ?", Time.zone.now.beginning_of_day).each do |datum| %>
                 <tr>
                   <td><%= datum.excercise %></td>
@@ -74,8 +75,16 @@
                   <td><%= datum.reps %></td>
                   <td><%= datum.weight %></td>
                   <td><%= intensity(datum) %></td>
+                  <% @totalIntensity += intensity(datum) %>
                 </tr>
               <% end %>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <th>Total:</th>
+                  <td><%= @totalIntensity %></td>
+                </tr>
               </table>
           <% else %>
               <p>Create some data to get started</p>

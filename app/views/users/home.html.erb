@@ -40,18 +40,6 @@
             <div class="panel-body">
               <% if current_user.data %>
               <%= line_chart [[0,0],[1,1]] %>
-              This is where the highcharts graph will go
-              <table class="table">
-                <% @workoutData.each do |data| %>
-                    <tr class="row">
-                      <% data.attributes.each_pair do |name, value| %>
-                          <td>
-                            <%= value %>
-                          </td>
-                      <% end %>
-                    </tr>
-                <% end %>
-              </table>
                   <% else %>
               <p>Create some data to get started</p>
                   <% end %>

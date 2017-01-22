@@ -37,6 +37,7 @@
             Summary
           </div>
             <div class="panel-body">
+              <%= line_chart @workoutData.group_by_day %>
               This is where the highcharts graph will go
               <table class="table">
                 <% @workoutData.each do |data| %>

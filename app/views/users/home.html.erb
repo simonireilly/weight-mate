@@ -1,20 +1,23 @@
 <% if user_signed_in? && current_user %>
     <!--The input container for the workout-->
-
-
-
     <div class="row">
       <div class="col-md-4">
         <div class="panel panel-info">
           <div class="panel-heading">
-            Add an excercise
+            <% @collectionBack = %w[Pull-ups Pull-downs Seated-row Stack-pull Oblique-pull Oblique-twist Rotating-curl Hammer-curl] %>
+            <% @collectionFront = %w[Leg-press Leg-extension Hamstring-curl Dumbbell-bench Overhead-press Lu-raise Arnie-raise Push-down Tricep-extension] %>
+            <% if @collectionBack.include? current_user.data.where("created_at > ?", Time.zone.now.beginning_of_day).first.excercise %>
+                <% @collection = @collectionFront; @message = "It's leg day" %>
+
+            <% else %>
+                <% @collection = @collectionBack; @message = "It's back day" %>
+            <% end %>
+            Add an excercise - <b><%= @message %></b>
           </div>
             <div class="panel-body">
               <div class="row">
               <%= simple_form_for @data do |f| %>
-                <% @collection = %w[Pull-ups Pull-downs Seated-row Stack-pull Oblique-pull Oblique-twist Rotating-curl Hammer-curl  ] %>
-
-                  <%= f.input :excercise, :collection => @collection, :wrapper_html => { :class => 'col-md-12' }%>
+                    <%= f.input :excercise, :collection => @collection, :wrapper_html => { :class => 'col-md-12' }%>
                     <div class="row">
                       <div class="col-md-12">
                         <%= f.input :sets, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>

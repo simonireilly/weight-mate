@@ -6,7 +6,7 @@
           <div class="panel-heading">
             <% @collectionBack = %w[Pull-ups Pull-downs Seated-row Stack-pull Oblique-pull Oblique-twist Rotating-curl Hammer-curl] %>
             <% @collectionFront = %w[Leg-press Leg-extension Hamstring-curl Dumbbell-bench Overhead-press Lu-raise Arnie-raise Push-down Tricep-extension] %>
-            <% if @collectionBack.include? current_user.data.where("created_at > ?", Time.zone.now.beginning_of_day).first.excercise %>
+            <% if @collectionBack.include? current_user.data.where("created_at < ?", Time.zone.now.beginning_of_day).first.excercise %>
                 <% @collection = @collectionFront; @message = "It's leg day" %>
 
             <% else %>

@@ -4,14 +4,19 @@
       <div class="col-md-4">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <% @collectionBack = %w[Pull-ups Pull-downs Seated-row Stack-pull Oblique-pull Oblique-twist Rotating-curl Hammer-curl] %>
-            <% @collectionFront = %w[Leg-press Leg-extension Hamstring-curl Dumbbell-bench Overhead-press Lu-raise Arnie-raise Push-down Tricep-extension] %>
-            <% if @collectionBack.include? current_user.data.where("created_at < ?", Time.zone.now.beginning_of_day).first.excercise %>
-                <% @collection = @collectionFront; @message = "It's leg day" %>
+            <% @collectionBack = %w[Pull-ups Pull-downs Seated-row Stack-pull Weighted-crunch Oblique-pull Oblique-twist Rotating-curl Hammer-curl] %>
+            <% @collectionFront = %w[Back-squat Leg-press Leg-extension Hamstring-curl Dumbbell-bench Overhead-press Lu-raise Arnie-raise Push-down Tricep-extension] %>
 
-            <% else %>
-                <% @collection = @collectionBack; @message = "It's back day" %>
-            <% end %>
+              <% if current_user.data.count >= 1 %>
+                <% if @collectionBack.include? current_user.data.where("created_at < ?", Time.zone.now.beginning_of_day).last.excercise %>
+                    <% @collection = @collectionFront; @message = "It's leg day" %>
+                <% else %>
+                    <% @collection = @collectionBack; @message = "It's back day" %>
+                <% end %>
+              <% else %>
+                <% @collection = @collectionBack; @message = "Fuck you Gerry you cunt" %>
+              <% end %>
+
             Add an excercise - <b><%= @message %></b>
           </div>
             <div class="panel-body">

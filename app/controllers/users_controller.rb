@@ -45,4 +45,10 @@ class UsersController < ApplicationController
       ]
     end
   end
+
+  def records
+    if current_user && current_user.data
+      @modelData= current_user.data.all
+    end
+  end
 end

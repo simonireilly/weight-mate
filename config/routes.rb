@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   resources :data
   get '/intensity', to: 'users#intensity'
+  get '/records', to: 'users#records'
 end

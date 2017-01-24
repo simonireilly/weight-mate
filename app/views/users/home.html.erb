@@ -60,45 +60,45 @@
     </div>
 
     <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          Your latest workout summary (This will reset tomorrow - better get to the gym!)
-        </div>
-        <div class="panel-body">
-          <% if current_user.data.count >= 1 %>
-              <table class="table table-responsive">
-                <tr>
-                  <th>Excercise</th>
-                  <th>Sets</th>
-                  <th>Reps</th>
-                  <th>Weight</th>
-                  <th>Intensity</th>
-                </tr>
-                <% @totalIntensity = 0   %>
-              <% @modelData.where("created_at >= ?", Time.zone.now.beginning_of_day).each do |datum| %>
-                <tr>
-                  <td><%= datum.excercise %></td>
-                  <td><%= datum.sets %></td>
-                  <td><%= datum.reps %></td>
-                  <td><%= datum.weight %></td>
-                  <td><%= intensity(datum) %></td>
-                  <% @totalIntensity += intensity(datum) %>
-                </tr>
-              <% end %>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <th>Total:</th>
-                  <td><%= @totalIntensity %></td>
-                </tr>
-              </table>
-          <% else %>
-              <p>Create some data to get started</p>
-          <% end %>
+      <div class="col-md-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            Your latest workout summary (This will reset tomorrow - better get to the gym!)
+          </div>
+          <div class="panel-body">
+            <% if current_user.data.count >= 1 %>
+                <table class="table table-responsive">
+                  <tr>
+                    <th>Excercise</th>
+                    <th>Sets</th>
+                    <th>Reps</th>
+                    <th>Weight</th>
+                    <th>Intensity</th>
+                  </tr>
+                  <% @totalIntensity = 0   %>
+                  <% @modelData.where("created_at >= ?", Time.zone.now.beginning_of_day).each do |datum| %>
+                      <tr>
+                        <td><%= datum.excercise %></td>
+                        <td><%= datum.sets %></td>
+                        <td><%= datum.reps %></td>
+                        <td><%= datum.weight %></td>
+                        <td><%= intensity(datum) %></td>
+                        <% @totalIntensity += intensity(datum) %>
+                      </tr>
+                  <% end %>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>Total:</th>
+                    <td><%= @totalIntensity %></td>
+                  </tr>
+                </table>
+            <% else %>
+                <p>Create some data to get started</p>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
     </div>
 <% end %>

@@ -4,6 +4,7 @@
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <%= f.input :email %>
         <%= f.input :password %>
+        <%= f.input :remember_me, :as => :boolean, :label => false, :inline_label => true if devise_mapping.rememberable?%>
         <%= f.button :submit, "Log in"  %>
 
     <%= render "devise/shared/links" %>

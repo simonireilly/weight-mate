@@ -2,7 +2,19 @@
   <div class="col-md-12">
     <div class="panel panel-info">
       <div class="panel-heading">
-        All your workouts in one place
+        <div class="row">
+          <div class="col-md-12">
+
+            <% @collection = %w[none Pull-ups Pull-downs Seated-row Stack-pull Weighted-crunch Oblique-pull Oblique-twist Rotating-curl Hammer-curl
+            Back-squat Leg-press Leg-extension Hamstring-curl Dumbbell-bench Overhead-press Lu-raise Arnie-raise Push-down Tricep-extension] %>
+            <%= simple_form_for '', :method => :get, :html => { :class => 'form-search' } do |f| %>
+                <%= f.input :excercise_filter, label: 'Filter by excercise:', :collection => @collection, selected: 1 %>
+                <%= f.button :submit, 'Filter' %>
+            <% end %>
+
+          </div>
+        </div>
+
       </div>
       <div class="panel-body">
         <% if current_user.data.count >= 1 %>
@@ -13,6 +25,7 @@
                 <th>Reps</th>
                 <th>Weight</th>
                 <th>Intensity</th>
+                <th>Date</th>
               </tr>
               <% @totalIntensity = 0   %>
               <% @modelData.each do |datum| %>
@@ -22,17 +35,29 @@
                     <td><%= datum.reps %></td>
                     <td><%= datum.weight %></td>
                     <td><%= intensity(datum) %></td>
+                    <td><%= datum.created_at.to_date %></td>
                     <% @totalIntensity += intensity(datum) %>
                   </tr>
               <% end %>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th>Total:</th>
-                <td><%= @totalIntensity %></td>
-              </tr>
+
             </table>
+        <% else %>
+            <p>Create some data to get started</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        If a filter is applied the graph appears below
+      </div>
+
+      <div class="panel-body">
+        <% if current_user.data.count >= 1 %>
+            <%= line_chart @graphData %>
         <% else %>
             <p>Create some data to get started</p>
         <% end %>

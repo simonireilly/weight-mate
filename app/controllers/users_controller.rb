@@ -48,7 +48,29 @@ class UsersController < ApplicationController
 
   def records
     if current_user && current_user.data
-      @modelData= current_user.data.all
-    end
+        if params[:excercise_filter] == 'none'
+          @modelData= current_user.data.all
+          else
+          @modelData = current_user.data.excercise(params[:excercise_filter])
+          @workoutSets = []
+          @workoutReps = []
+          @workoutWeight = []
+          @workoutIntensity = []
+
+            @modelData.each do |datum|
+              @date = datum.created_at
+              @intensity = datum.weight*datum.reps*datum.sets
+
+              @workoutSets.push([@date,datum.sets])
+              @workoutReps.push([@date,datum.reps])
+              @workoutWeight.push([@date,datum.weight])
+            end
+          @graphData = [
+              {name: "Sets", data: @workoutSets},
+              {name: "Reps", data: @workoutReps},
+              {name: "Weight", data: @workoutWeight},
+          ]
+        end
+      end
   end
 end

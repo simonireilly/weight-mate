@@ -3,12 +3,10 @@
     <div class="panel panel-info">
       <div class="panel-heading">
         <div class="row">
-          <div class="col-md-12">
-
-            <% @collection = %w[none Pull-ups Pull-downs Seated-row Stack-pull Weighted-crunch Oblique-pull Oblique-twist Rotating-curl Hammer-curl
-            Back-squat Leg-press Leg-extension Hamstring-curl Dumbbell-bench Overhead-press Lu-raise Arnie-raise Push-down Tricep-extension] %>
-            <%= simple_form_for '', :method => :get, :html => { :class => 'form-search' } do |f| %>
-                <%= f.input :excercise_filter, label: 'Filter by excercise:', :collection => @collection, selected: 1 %>
+            <div class="col-md-12">
+            <%= simple_form_for '', :method => :get, :html => { :class => 'form-inline  ' } do |f| %>
+                <%= f.input :excercise_filter, label: false , :collection => @collection, :selected => params[:excercise_filter],
+                            :include_blank => "(select if none)", :required => false %>
                 <%= f.button :submit, 'Filter' %>
             <% end %>
 
@@ -17,10 +15,9 @@
 
       </div>
       <div class="panel-body">
-        <% if current_user.data.count >= 1 %>
+        <% if current_user.data.count >= 1 && params[:excercise_filter].present? %>
             <table class="table table-responsive">
               <tr>
-                <th>Excercise</th>
                 <th>Sets</th>
                 <th>Reps</th>
                 <th>Weight</th>
@@ -30,7 +27,6 @@
               <% @totalIntensity = 0   %>
               <% @modelData.each do |datum| %>
                   <tr>
-                    <td><%= datum.excercise %></td>
                     <td><%= datum.sets %></td>
                     <td><%= datum.reps %></td>
                     <td><%= datum.weight %></td>
@@ -42,26 +38,25 @@
 
             </table>
         <% else %>
-            <p>Create some data to get started</p>
+            <p>Select a filter above</p>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<% if current_user.data.count >= 1 && @graphData.present? %>
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-info">
       <div class="panel-heading">
-        If a filter is applied the graph appears below
+        <%= params[:excercise_filter] %>
       </div>
-
       <div class="panel-body">
-        <% if current_user.data.count >= 1 %>
+
             <%= line_chart @graphData %>
-        <% else %>
-            <p>Create some data to get started</p>
-        <% end %>
       </div>
     </div>
   </div>
 </div>
+<% else %>
+<% end %>

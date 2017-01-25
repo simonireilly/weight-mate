@@ -48,9 +48,11 @@ class UsersController < ApplicationController
 
   def records
     if current_user && current_user.data
-        if params[:excercise_filter] == 'none'
+      @collection = current_user.data.distinct.pluck(:excercise)
+
+        if params[:excercise_filter] == nil
           @modelData= current_user.data.all
-          else
+        else
           @modelData = current_user.data.excercise(params[:excercise_filter])
           @workoutSets = []
           @workoutReps = []
@@ -71,6 +73,6 @@ class UsersController < ApplicationController
               {name: "Weight", data: @workoutWeight},
           ]
         end
-      end
+    end
   end
 end

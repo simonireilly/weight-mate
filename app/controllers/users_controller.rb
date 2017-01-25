@@ -50,28 +50,29 @@ class UsersController < ApplicationController
     if current_user && current_user.data
       @collection = current_user.data.distinct.pluck(:excercise)
 
-        if params[:excercise_filter] == nil
-          @modelData= current_user.data.all
-        else
+        if @collection.include? params[:excercise_filter]
           @modelData = current_user.data.excercise(params[:excercise_filter])
           @workoutSets = []
           @workoutReps = []
           @workoutWeight = []
           @workoutIntensity = []
 
-            @modelData.each do |datum|
-              @date = datum.created_at
-              @intensity = datum.weight*datum.reps*datum.sets
+          @modelData.each do |datum|
+            @date = datum.created_at
+            @intensity = datum.weight*datum.reps*datum.sets
 
-              @workoutSets.push([@date,datum.sets])
-              @workoutReps.push([@date,datum.reps])
-              @workoutWeight.push([@date,datum.weight])
-            end
+            @workoutSets.push([@date,datum.sets])
+            @workoutReps.push([@date,datum.reps])
+            @workoutWeight.push([@date,datum.weight])
+          end
           @graphData = [
               {name: "Sets", data: @workoutSets},
               {name: "Reps", data: @workoutReps},
               {name: "Weight", data: @workoutWeight},
           ]
+
+        else
+          @modelData= current_user.data.all
         end
     end
   end

@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def records
     if current_user && current_user.data
-      @collection = current_user.data.distinct.pluck(:excercise)
+      @collection = current_user.data.pluck(:excercise).uniq
 
         if @collection.include? params[:excercise_filter]
           @modelData = current_user.data.excercise(params[:excercise_filter])

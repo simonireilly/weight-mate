@@ -45,24 +45,6 @@
       <div class="col-md-8">
         <div class="panel panel-info">
           <div class="panel-heading">
-            Intensity of your workout - The dot product of repetitions, sets and the weight lifted
-          </div>
-
-            <div class="panel-body">
-              <% if current_user.data.count >= 1 %>
-                  <%= line_chart @intensityData %>
-                  <% else %>
-              <p>Create some data to get started</p>
-                  <% end %>
-            </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-info">
-          <div class="panel-heading">
             Your latest workout summary (This will reset tomorrow - better get to the gym!)
           </div>
           <div class="panel-body">

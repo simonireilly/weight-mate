@@ -70,8 +70,7 @@ class UsersController < ApplicationController
               {name: "Reps", data: @workoutReps},
               {name: "Weight", data: @workoutWeight},
           ]
-
-        else
+         else
           @modelData= current_user.data.all
         end
     end

@@ -12,7 +12,6 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'chartkick'
-gem 'line'
 
 gem 'groupdate'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

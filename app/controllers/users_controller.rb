@@ -87,6 +87,7 @@ class UsersController < ApplicationController
       @record = current_user.data.where(excercise: excercise).order(weight: :desc).first
       @records.push(@record)
     end
+    @records = @records.sort_by &:excercise
   end
 
 

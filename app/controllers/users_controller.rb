@@ -64,15 +64,30 @@ class UsersController < ApplicationController
             @workoutSets.push([@date,datum.sets])
             @workoutReps.push([@date,datum.reps])
             @workoutWeight.push([@date,datum.weight])
+            @workoutIntensity.push([@date,@intensity])
           end
           @graphData = [
               {name: "Sets", data: @workoutSets},
               {name: "Reps", data: @workoutReps},
               {name: "Weight", data: @workoutWeight},
+              {name: "Intensity", data: @workoutIntensity}
           ]
          else
           @modelData= current_user.data.all
         end
     end
   end
+
+  def maximum
+
+    @collection = current_user.data.pluck(:excercise).uniq
+    @array = @collection.to_ary
+    @records = []
+    @array.each do |excercise|
+      @record = current_user.data.where(excercise: excercise).order(weight: :desc).first
+      @records.push(@record)
+    end
+  end
+
+
 end

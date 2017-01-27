@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Maximum wieghts lifted
+      </div>
+      <div class="panel-body">
+
+        <table class="table table-responsive">
+          <tr>
+            <th>Excercise</th>
+            <th>Weight (kg)</th>
+
+          </tr>
+          <% @totalIntensity = 0   %>
+          <% @records.each do |datum| %>
+              <tr>
+                <td><%= datum.excercise %></td>
+                <td><%= datum.weight %></td>
+              </tr>
+          <% end %>
+
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

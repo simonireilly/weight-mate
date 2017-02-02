@@ -6,7 +6,24 @@
       </div>
       <div class="panel-body">
         <% if current_user.data.count >= 1 %>
-            <%= line_chart @intensityData %>
+            <%= line_chart @intensity_data %>
+        <% else %>
+            <p>Create some data to get started</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Average attendance:
+      </div>
+      <div class="panel-body text-center">
+        <% if current_user.data.count >= 1 %>
+          <h1><b><%= "#{@average_attendance}%" %></b></h1>
         <% else %>
             <p>Create some data to get started</p>
         <% end %>

@@ -27,23 +27,26 @@ class UsersController < ApplicationController
 
   def intensity
 
-    @returnedData = 0
+    @returned_data = 0
     @dates = []
-    @intensityArray = []
+    @intensity_array = []
 
     if current_user && current_user.data.count >= 1
 
       (current_user.data.first.created_at.to_date..current_user.data.last.created_at.to_date).each do |date|
-        @returnedData = 0
+        @returned_data = 0
         current_user.data.where(created_at: date.midnight..date.end_of_day).all.each do |datum|
-          @returnedData += datum.weight*datum.reps*datum.sets
+          @returned_data += datum.weight*datum.reps*datum.sets
         end
-        @intensityArray.push([date, @returnedData])
+        @intensity_array.push([date, @returned_data])
       end
-      @intensityData = [
-          {name: "intensity", data: @intensityArray}
+      @intensity_data = [
+          {name: "intensity", data: @intensity_array}
       ]
     end
+    @average_attendance = 0
+    @intensity_array.each {|date, intensity|  @average_attendance += 1 if intensity > 0 }
+    @average_attendance = (100 * @average_attendance / @intensity_array.size).round
   end
 
   def records
@@ -88,6 +91,10 @@ class UsersController < ApplicationController
       @records.push(@record)
     end
     @records = @records.sort_by &:excercise
+  end
+
+  def gains
+
   end
 
 

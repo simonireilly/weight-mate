@@ -23,7 +23,37 @@
       </div>
       <div class="panel-body text-center">
         <% if current_user.data.count >= 1 %>
-          <h1><b><%= "#{@average_attendance}%" %></b></h1>
+          <h1><b><%=@average_attendance%></b><small> Days a week</small></h1>
+        <% else %>
+            <p>Create some data to get started</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Average intensity:
+      </div>
+      <div class="panel-body text-center">
+        <% if current_user.data.count >= 1 %>
+            <h1><b><%=@all_intensity%></b></h1>
+        <% else %>
+            <p>Create some data to get started</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Intensity trend:
+      </div>
+      <div class="panel-body text-center">
+        <% if current_user.data.count >= 1 %>
+            <h1><b><%=number_with_precision(@check, precision: 2)%></b></h1>
         <% else %>
             <p>Create some data to get started</p>
         <% end %>

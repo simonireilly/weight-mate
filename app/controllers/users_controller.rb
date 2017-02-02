@@ -43,10 +43,14 @@ class UsersController < ApplicationController
       @intensity_data = [
           {name: "intensity", data: @intensity_array}
       ]
+      @total_attendance = 0
+      @all_intensity = 0
+      @intensity_array.each {|date, intensity|  @total_attendance += 1 if intensity > 0; @all_intensity += intensity if intensity > 0 }
+      @average_attendance = (7 * @total_attendance / @intensity_array.size).round
+      @all_intensity = @all_intensity/@total_attendance
+      @check = covariance([2.0,4.0,6.0,8.0],[1.0,2.0,1.0,4.0])
     end
-    @average_attendance = 0
-    @intensity_array.each {|date, intensity|  @average_attendance += 1 if intensity > 0 }
-    @average_attendance = (100 * @average_attendance / @intensity_array.size).round
+
   end
 
   def records
@@ -98,4 +102,23 @@ class UsersController < ApplicationController
   end
 
 
+end
+
+def covariance(xs,ys)
+  x_column = []
+  y_column = []
+  xs.each_with_index { |xv,index | x_column[index] = xv - mean(xs) }
+  ys.each_with_index { |yv,index | y_column[index] = yv - mean(ys) }
+  yx_product = x_column.zip(y_column).map{|x,y| x*y}
+  (yx_product.sum / (xs.size))
+
+end
+def variance(xs,ys)
+
+# variance is S^2 = sum((xi-x_bar)^2) / n-1
+# You should be able to code this no bother!
+end
+def mean(values)
+  "Method failed to run - values passed not an array" unless values.kind_of?(Array)
+  values.sum/values.length
 end

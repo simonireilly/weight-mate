@@ -51,7 +51,9 @@ class UsersController < ApplicationController
       @intensity_array.each {|date, intensity|  @total_attendance += 1 if intensity > 0; @all_intensity += intensity if intensity > 0 }
       @average_attendance = (7 * @total_attendance / @intensity_array.size).round
       @all_intensity = @all_intensity/@total_attendance
-      @gradient = gradient(@dates, @intensities)
+
+      @gradient = gradient(@dates, @intensities).round()
+      @gradient  = @gradient > 0 ? "+#{@gradient}" : "#{@gradient}"
 
     end
 

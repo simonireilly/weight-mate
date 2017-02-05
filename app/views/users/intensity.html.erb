@@ -53,7 +53,7 @@
       </div>
       <div class="panel-body text-center">
         <% if current_user.data.count >= 1 %>
-            <h1><b><%=@gradient%> / day</b></h1>
+            <h1><b><%=@gradient.round()%> / day</b></h1>
         <% else %>
             <p>Create some data to get started</p>
         <% end %>

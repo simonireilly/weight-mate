@@ -22,7 +22,7 @@
             <div class="panel-body">
               <div class="row">
               <%= simple_form_for @data do |f| %>
-                    <%= f.input :excercise, :collection => @collectionBack, :wrapper_html => { :class => 'col-md-12' }%>
+                    <%= f.input :excercise, :collection => @collection, :wrapper_html => { :class => 'col-md-12' }%>
                     <div class="row">
                       <div class="col-md-12">
                         <%= f.input :sets, :wrapper_html => { :class => 'col-md-12 col-xs-4' } %>

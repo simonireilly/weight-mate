@@ -3,7 +3,7 @@
 * Simple application for tracking weight training
 * Contains user login for confidentiallity supported by Devise
 
-##Setup:
+## Setup:
 
 * git clone [repository]
 * bundle update

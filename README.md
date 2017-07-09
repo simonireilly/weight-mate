@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Simple application for tracking weight training
+* Contains user login for confidentiallity supported by Devise
 
-Things you may want to cover:
+##Setup:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* git clone [repository]
+* bundle update
+* bundle install
+* rails db:setup
+* rails db:migrate
